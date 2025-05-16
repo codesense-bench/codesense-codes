@@ -1,0 +1,82 @@
+[
+    {
+      "idx": 0,
+      "response": "<ans>'/home/XXX/.tsecrets/testing'</ans>"
+    },
+    {
+      "idx": 1,
+      "response": "<ans>'testing'</ans>"
+    },
+    {
+      "idx": 2,
+      "response": "<ans>An instance of the BPA client class initialized with empty kwargs</ans>"
+    },
+    {
+      "idx": 3,
+      "response": "<ans>Generation data for CAISO with latest=True</ans>"
+    },
+    {
+      "idx": 4,
+      "response": "<ans>Load data for PJM with latest=True</ans>"
+    },
+    {
+      "idx": 5,
+      "response": "<ans>Trade data for NYISO with latest=True</ans>"
+    },
+    {
+      "idx": 6,
+      "response": "<ans>42</ans>"
+    },
+    {
+      "idx": 7,
+      "response": "<ans>0.0</ans>"
+    },
+    {
+      "idx": 8,
+      "response": "<ans>NotImplementedError: Distance is an abstract class</ans>"
+    },
+    {
+      "idx": 9,
+      "response": "<ans>3280.84</ans>"
+    },
+    {
+      "idx": 10,
+      "response": "<ans>0.5399568034557235</ans>"
+    },
+    {
+      "idx": 11,
+      "response": "<ans>'41.5, 81.0, 2.5 km'</ans>"
+    },
+    {
+      "idx": 12,
+      "response": "<ans>(1907, 7, 3, 0, 0, 0)</ans>"
+    },
+    {
+      "idx": 13,
+      "response": "<ans>2741.0</ans>"
+    },
+    {
+      "idx": 14,
+      "response": "<ans>(1, 1, 1, 1)</ans>"
+    },
+    {
+      "idx": 15,
+      "response": "<ans>DEPRECATED FUNCTION\n\n            .. warning::\n                **THIS FUNCTION IS DEPRECATED:** It will be removed after after 2018-09-30.\n                *Instructions for updating:* This API is deprecated. Please use as `tl.logging.warning`.\n        </ans>"
+    },
+    {
+      "idx": 16,
+      "response": "<ans>(0, 1, 1)</ans>"
+    },
+    {
+      "idx": 17,
+      "response": "<ans>{'version': 'unknown', 'full': ''}</ans>"
+    },
+    {
+      "idx": 18,
+      "response": "<ans>{}</ans>"
+    },
+    {
+      "idx": 19,
+      "response": "<ans>None</ans>"
+    }
+  ]

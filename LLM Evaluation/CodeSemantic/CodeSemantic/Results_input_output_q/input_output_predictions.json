@@ -1,0 +1,308 @@
+{
+  "Llama-3.1-8B-Instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.19344262295081968
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.009836065573770493
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.5442622950819672
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.5016393442622951
+            }
+          }
+        }
+      }
+    }
+  },
+  "Qwen2.5-14B-Instruct-1M": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.3114754098360656
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.036065573770491806
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.4491803278688525
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.30491803278688523
+            }
+          }
+        }
+      }
+    }
+  },
+  "Qwen2.5-Coder-7B-Instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.2
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.05901639344262295
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.42295081967213116
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.35737704918032787
+            }
+          }
+        }
+      }
+    }
+  },
+  "DeepSeek-Coder-V2-Lite-Instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.06229508196721312
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.03934426229508197
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.1737704918032787
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.33114754098360655
+            }
+          }
+        }
+      }
+    }
+  },
+  "Phi-4-mini-instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.16721311475409836
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.013114754098360656
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.3081967213114754
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.35737704918032787
+            }
+          }
+        }
+      }
+    }
+  },
+  "Phi-3.5-mini-instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.2360655737704918
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.04262295081967213
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.4852459016393443
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.5147540983606558
+            }
+          }
+        }
+      }
+    }
+  },
+  "granite-3.2-8b-instruct": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.2459016393442623
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.03934426229508197
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.46557377049180326
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.3639344262295082
+            }
+          }
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-7B": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.13114754098360656
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.01639344262295082
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.2360655737704918
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.1180327868852459
+            }
+          }
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Llama-8B": {
+    "quantized_no": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.09508196721311475
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.02622950819672131
+            }
+          }
+        }
+      }
+    },
+    "quantized_yes": {
+      "pt4": {
+        "python": {
+          "output": {
+            "shot3": {
+              "overall_accuracy": 0.21967213114754097
+            }
+          },
+          "input": {
+            "shot3": {
+              "overall_accuracy": 0.08524590163934426
+            }
+          }
+        }
+      }
+    }
+  }
+}

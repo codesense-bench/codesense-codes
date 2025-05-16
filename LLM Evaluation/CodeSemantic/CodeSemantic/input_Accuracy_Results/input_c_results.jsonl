@@ -1,0 +1,14 @@
+{"Model": "Llama-3.1-8B-Instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.08602150537634409}
+{"Model": "Qwen2.5-14B-Instruct-1M", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.06451612903225806}
+{"Model": "Qwen2.5-Coder-7B-Instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.1827956989247312}
+{"Model": "DeepSeek-Coder-V2-Lite-Instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.0967741935483871}
+{"Model": "Phi-4-mini-instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.08602150537634409}
+{"Model": "Phi-3.5-mini-instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.053763440860215055}
+{"Model": "granite-3.2-8b-instruct", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.0}
+{"Model": "DeepSeek-R1-Distill-Qwen-7B", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.13978494623655913}
+{"Model": "DeepSeek-R1-Distill-Llama-8B", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.08602150537634409}
+{"Model": "DeepSeek-R1-Distill-Qwen-14B", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.12903225806451613}
+{"Model": "granite-3.2-8b-instruct-preview", "Prediction": "input", "Prompt": 0, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.0}
+{"Model": "gemini-1.5-flash-002", "Prediction": "input", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.043010752688172046}
+{"Model": "anthropic.claude-3-5-sonnet-20241022-v2:0", "Prediction": "input", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.15053763440860216}
+{"Model": "gpt-4o-mini", "Prediction": "input", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.17204301075268819}

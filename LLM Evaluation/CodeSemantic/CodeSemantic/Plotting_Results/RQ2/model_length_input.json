@@ -1,0 +1,464 @@
+[
+  {
+    "model_name": "granite-3.2-8b-instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.07608695652173914,
+    "medium_accuracy": 0.04040404040404041,
+    "hard_accuracy": 0.03418803418803419,
+    "counts": {
+      "Small": {
+        "correct": 7,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 4,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 4,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "granite-3.2-8b-instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.18478260869565216,
+    "medium_accuracy": 0.21212121212121213,
+    "hard_accuracy": 0.1794871794871795,
+    "counts": {
+      "Small": {
+        "correct": 17,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 21,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 21,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "granite-3.2-8b-instruct-preview",
+    "quantize": "no",
+    "easy_accuracy": 0.05434782608695652,
+    "medium_accuracy": 0.050505050505050504,
+    "hard_accuracy": 0.05128205128205128,
+    "counts": {
+      "Small": {
+        "correct": 5,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 5,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 6,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "granite-3.2-8b-instruct-preview",
+    "quantize": "yes",
+    "easy_accuracy": 0.22826086956521738,
+    "medium_accuracy": 0.1919191919191919,
+    "hard_accuracy": 0.1282051282051282,
+    "counts": {
+      "Small": {
+        "correct": 21,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 19,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 15,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Llama-8B",
+    "quantize": "no",
+    "easy_accuracy": 0.06521739130434782,
+    "medium_accuracy": 0.04040404040404041,
+    "hard_accuracy": 0.05128205128205128,
+    "counts": {
+      "Small": {
+        "correct": 6,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 4,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 6,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Llama-8B",
+    "quantize": "yes",
+    "easy_accuracy": 0.2717391304347826,
+    "medium_accuracy": 0.23232323232323232,
+    "hard_accuracy": 0.27350427350427353,
+    "counts": {
+      "Small": {
+        "correct": 25,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 23,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 32,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Phi-4-mini-instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.07608695652173914,
+    "medium_accuracy": 0.06060606060606061,
+    "hard_accuracy": 0.05128205128205128,
+    "counts": {
+      "Small": {
+        "correct": 7,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 6,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 6,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Phi-4-mini-instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.2391304347826087,
+    "medium_accuracy": 0.26262626262626265,
+    "hard_accuracy": 0.13675213675213677,
+    "counts": {
+      "Small": {
+        "correct": 22,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 26,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 16,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+    "quantize": "no",
+    "easy_accuracy": 0.09782608695652174,
+    "medium_accuracy": 0.10101010101010101,
+    "hard_accuracy": 0.1111111111111111,
+    "counts": {
+      "Small": {
+        "correct": 9,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 10,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 13,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+    "quantize": "yes",
+    "easy_accuracy": 0.3804347826086957,
+    "medium_accuracy": 0.4444444444444444,
+    "hard_accuracy": 0.46153846153846156,
+    "counts": {
+      "Small": {
+        "correct": 35,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 44,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 54,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Qwen2.5-Coder-7B-Instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.10869565217391304,
+    "medium_accuracy": 0.13131313131313133,
+    "hard_accuracy": 0.08547008547008547,
+    "counts": {
+      "Small": {
+        "correct": 10,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 13,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 10,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Qwen2.5-Coder-7B-Instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.45652173913043476,
+    "medium_accuracy": 0.43434343434343436,
+    "hard_accuracy": 0.452991452991453,
+    "counts": {
+      "Small": {
+        "correct": 42,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 43,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 53,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Qwen2.5-14B-Instruct-1M",
+    "quantize": "no",
+    "easy_accuracy": 0.13043478260869565,
+    "medium_accuracy": 0.13131313131313133,
+    "hard_accuracy": 0.13675213675213677,
+    "counts": {
+      "Small": {
+        "correct": 12,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 13,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 16,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Qwen2.5-14B-Instruct-1M",
+    "quantize": "yes",
+    "easy_accuracy": 0.6630434782608695,
+    "medium_accuracy": 0.7070707070707071,
+    "hard_accuracy": 0.6752136752136753,
+    "counts": {
+      "Small": {
+        "correct": 61,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 70,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 79,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "quantize": "no",
+    "easy_accuracy": 0.06521739130434782,
+    "medium_accuracy": 0.030303030303030304,
+    "hard_accuracy": 0.06837606837606838,
+    "counts": {
+      "Small": {
+        "correct": 6,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 3,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 8,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "quantize": "yes",
+    "easy_accuracy": 0.29347826086956524,
+    "medium_accuracy": 0.26262626262626265,
+    "hard_accuracy": 0.2222222222222222,
+    "counts": {
+      "Small": {
+        "correct": 27,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 26,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 26,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Llama-3.1-8B-Instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.06521739130434782,
+    "medium_accuracy": 0.0707070707070707,
+    "hard_accuracy": 0.05982905982905983,
+    "counts": {
+      "Small": {
+        "correct": 6,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 7,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 7,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Llama-3.1-8B-Instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.45652173913043476,
+    "medium_accuracy": 0.42424242424242425,
+    "hard_accuracy": 0.4700854700854701,
+    "counts": {
+      "Small": {
+        "correct": 42,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 42,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 55,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Phi-3.5-mini-instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.06521739130434782,
+    "medium_accuracy": 0.0707070707070707,
+    "hard_accuracy": 0.05982905982905983,
+    "counts": {
+      "Small": {
+        "correct": 6,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 7,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 7,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "Phi-3.5-mini-instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.14130434782608695,
+    "medium_accuracy": 0.1111111111111111,
+    "hard_accuracy": 0.13675213675213677,
+    "counts": {
+      "Small": {
+        "correct": 13,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 11,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 16,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-Coder-V2-Lite-Instruct",
+    "quantize": "no",
+    "easy_accuracy": 0.08695652173913043,
+    "medium_accuracy": 0.08080808080808081,
+    "hard_accuracy": 0.09401709401709402,
+    "counts": {
+      "Small": {
+        "correct": 8,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 8,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 11,
+        "total": 117
+      }
+    }
+  },
+  {
+    "model_name": "DeepSeek-Coder-V2-Lite-Instruct",
+    "quantize": "yes",
+    "easy_accuracy": 0.358695652173913,
+    "medium_accuracy": 0.40404040404040403,
+    "hard_accuracy": 0.4188034188034188,
+    "counts": {
+      "Small": {
+        "correct": 33,
+        "total": 92
+      },
+      "Medium": {
+        "correct": 40,
+        "total": 99
+      },
+      "Hard": {
+        "correct": 49,
+        "total": 117
+      }
+    }
+  }
+]

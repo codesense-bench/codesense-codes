@@ -1,0 +1,722 @@
+{
+  "Llama-3.1-8B-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.14830736163353037,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.14465408805031446,
+            "correct": 23,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.14728682170542637,
+            "correct": 19,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.18036529680365296,
+            "correct": 79,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.16613418530351437,
+            "correct": 52,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.12149532710280374,
+            "correct": 26,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.0945273631840796,
+            "correct": 19,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.17037037037037037,
+            "correct": 23,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.13675213675213677,
+            "correct": 16,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.1527777777777778,
+            "correct": 11,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.0963855421686747,
+            "correct": 8,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "Qwen2.5-14B-Instruct-1M": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.2783449758194519,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.25157232704402516,
+            "correct": 40,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.20930232558139536,
+            "correct": 27,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.3401826484018265,
+            "correct": 149,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.31309904153354634,
+            "correct": 98,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.2570093457943925,
+            "correct": 55,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.24875621890547264,
+            "correct": 50,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.24444444444444444,
+            "correct": 33,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.2564102564102564,
+            "correct": 30,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.19444444444444445,
+            "correct": 14,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.26506024096385544,
+            "correct": 22,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "Qwen2.5-Coder-7B-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.21708758731864589,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.1949685534591195,
+            "correct": 31,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.18604651162790697,
+            "correct": 24,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.2671232876712329,
+            "correct": 117,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.22044728434504793,
+            "correct": 69,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.17289719626168223,
+            "correct": 37,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.21393034825870647,
+            "correct": 43,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.22962962962962963,
+            "correct": 31,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.2222222222222222,
+            "correct": 26,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.125,
+            "correct": 9,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.20481927710843373,
+            "correct": 17,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "DeepSeek-Coder-V2-Lite-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.2971520687802257,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.31446540880503143,
+            "correct": 50,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.20930232558139536,
+            "correct": 27,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.3561643835616438,
+            "correct": 156,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.3546325878594249,
+            "correct": 111,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.2336448598130841,
+            "correct": 50,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.24875621890547264,
+            "correct": 50,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.28888888888888886,
+            "correct": 39,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.29914529914529914,
+            "correct": 35,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.19444444444444445,
+            "correct": 14,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.25301204819277107,
+            "correct": 21,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "Phi-4-mini-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.2031166039763568,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.1761006289308176,
+            "correct": 28,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.17054263565891473,
+            "correct": 22,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.2374429223744292,
+            "correct": 104,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.23961661341853036,
+            "correct": 75,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.1822429906542056,
+            "correct": 39,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.1791044776119403,
+            "correct": 36,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.17777777777777778,
+            "correct": 24,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.1794871794871795,
+            "correct": 21,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.1527777777777778,
+            "correct": 11,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.21686746987951808,
+            "correct": 18,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "Phi-3.5-mini-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.1660397635679742,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.14465408805031446,
+            "correct": 23,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.13953488372093023,
+            "correct": 18,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.19863013698630136,
+            "correct": 87,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.1853035143769968,
+            "correct": 58,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.1542056074766355,
+            "correct": 33,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.15920398009950248,
+            "correct": 32,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.16296296296296298,
+            "correct": 22,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.1794871794871795,
+            "correct": 21,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.1111111111111111,
+            "correct": 8,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.08433734939759036,
+            "correct": 7,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "granite-3.2-8b-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.010209564750134336,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.018867924528301886,
+            "correct": 3,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.015503875968992248,
+            "correct": 2,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.0091324200913242,
+            "correct": 4,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.006389776357827476,
+            "correct": 2,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.009345794392523364,
+            "correct": 2,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.01990049751243781,
+            "correct": 4,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.007407407407407408,
+            "correct": 1,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.0,
+            "correct": 0,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.012048192771084338,
+            "correct": 1,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-7B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.10424502955400322,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.06918238993710692,
+            "correct": 11,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.11627906976744186,
+            "correct": 15,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.13013698630136986,
+            "correct": 57,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.09584664536741214,
+            "correct": 30,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.09813084112149532,
+            "correct": 21,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.06467661691542288,
+            "correct": 13,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.0962962962962963,
+            "correct": 13,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.11965811965811966,
+            "correct": 14,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.125,
+            "correct": 9,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.13253012048192772,
+            "correct": 11,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Llama-8B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.06824288017195057,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.07547169811320754,
+            "correct": 12,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.07751937984496124,
+            "correct": 10,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.07077625570776255,
+            "correct": 31,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.06070287539936102,
+            "correct": 19,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.06542056074766354,
+            "correct": 14,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.05970149253731343,
+            "correct": 12,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.08148148148148149,
+            "correct": 11,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.05128205128205128,
+            "correct": 6,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.09722222222222222,
+            "correct": 7,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.060240963855421686,
+            "correct": 5,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-14B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.2181622783449758,
+        "is_block_based": true,
+        "block_results": {
+          "5": {
+            "accuracy": 0.1949685534591195,
+            "correct": 31,
+            "total": 159
+          },
+          "6": {
+            "accuracy": 0.14728682170542637,
+            "correct": 19,
+            "total": 129
+          },
+          "1": {
+            "accuracy": 0.2648401826484018,
+            "correct": 116,
+            "total": 438
+          },
+          "2": {
+            "accuracy": 0.28115015974440893,
+            "correct": 88,
+            "total": 313
+          },
+          "3": {
+            "accuracy": 0.14953271028037382,
+            "correct": 32,
+            "total": 214
+          },
+          "4": {
+            "accuracy": 0.19402985074626866,
+            "correct": 39,
+            "total": 201
+          },
+          "7": {
+            "accuracy": 0.2222222222222222,
+            "correct": 30,
+            "total": 135
+          },
+          "8": {
+            "accuracy": 0.18803418803418803,
+            "correct": 22,
+            "total": 117
+          },
+          "10": {
+            "accuracy": 0.18055555555555555,
+            "correct": 13,
+            "total": 72
+          },
+          "9": {
+            "accuracy": 0.1927710843373494,
+            "correct": 16,
+            "total": 83
+          }
+        },
+        "sample_counts": {
+          "5": 159,
+          "6": 129,
+          "1": 438,
+          "2": 313,
+          "3": 214,
+          "4": 201,
+          "7": 135,
+          "8": 117,
+          "10": 72,
+          "9": 83
+        }
+      }
+    }
+  }
+}

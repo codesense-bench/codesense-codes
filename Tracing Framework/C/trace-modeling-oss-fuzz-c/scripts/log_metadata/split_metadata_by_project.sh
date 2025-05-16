@@ -1,0 +1,3 @@
+csvsql --query 'SELECT project from all_project_data where language="c++"' data/all_project_data.csv | tail -n +2 > data/projects_cpp.txt
+csvsql --query 'SELECT project from all_project_data where language="jvm"' data/all_project_data.csv | tail -n +2 > data/projects_jvm.txt
+csvsql --query 'SELECT project from all_project_data where language="c"'   data/all_project_data.csv | tail -n +2 > data/projects_c.txt

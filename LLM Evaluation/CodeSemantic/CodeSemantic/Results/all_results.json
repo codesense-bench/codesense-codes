@@ -1,0 +1,426 @@
+{
+  "Llama-3.1-8B-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.13333333333333333,
+        "language": "python",
+        "is_block_based": false,
+        "prediction_type": "value",
+        "type_accuracy": null,
+        "type_counts": {
+          "correct": 2,
+          "total": 15,
+          "examples": [
+            {
+              "correct": false,
+              "expected": "'/home/XXX/.tsecrets/testing'",
+              "predicted": "'/home/XXX/secrets/testing'",
+              "code": "def secrets_dir(env=os.getenv('D2_ENVIRONMENT', None),\n                basedir=os.getenv('D2_SECRETS_BASEDIR', None)):\n    if env is not None:\n        env_str = str(env)\n    else:\n        cwd = os.getcwd()\n        default_file = os.path.join(cwd, '.python_secrets_environment')\n        if os.path.exists(default_file):\n            with open(default_file, 'r') as f:\n                env_str = f.read().strip()\n        else:\n            env_str = os.path.basename(cwd)\n    if basedir is None:\n        basedir = os.path.join(\n                HOME,\n                'secrets' if sys.platform.startswith('win') else '.secrets')\n    return os.path.join(basedir, env_str)"
+            },
+            {
+              "correct": false,
+              "expected": "'testing'",
+              "predicted": "testing",
+              "code": "def _identify_environment(environment=None):\n    \n    cwd = os.getcwd()\n    if environment is None:\n        env_file = os.path.join(cwd, '.python_secrets_environment')\n        if os.path.exists(env_file):\n            with open(env_file, 'r') as f:\n                environment = f.read().replace('\\n', '')\n        else:\n            environment = os.getenv('D2_ENVIRONMENT',\n                                    os.path.basename(cwd))\n    return environment"
+            },
+            {
+              "correct": false,
+              "expected": "[]",
+              "predicted": "data",
+              "code": "def get_load(ba_name, **kwargs):\n    \n    c = client_factory(ba_name)\n    data = c.get_load(**kwargs)\n    \n    \n    if len(data) == 0:\n        msg = '%s: No load data at %s with args %s' % (ba_name, datetime.utcnow().isoformat(),\n                                                    kwargs)\n        logger.warn(msg)\n    \n    \n    return data"
+            },
+            {
+              "correct": true,
+              "expected": "42",
+              "predicted": "42",
+              "code": "def get_retry_after(headers):\n    \n    \n    \n\n    try:\n        retry_after = headers['retry-after']\n    except KeyError:\n        return None\n\n    if not retry_after:  \n        return None\n\n    retry_after = retry_after.strip()\n\n    \n    \n\n    try:\n        \n        seconds = int(retry_after)\n    except ValueError:\n        \n        retry_date_tuple = email.utils.parsedate_tz(retry_after)\n        if retry_date_tuple is None:\n            logger.warning('Invalid Retry-After header: %s', retry_after)\n            return None\n        retry_date = email.utils.mktime_tz(retry_date_tuple)\n        seconds = retry_date - time.time()\n\n    if seconds < 0:\n        seconds = 0\n\n    return seconds"
+            },
+            {
+              "correct": true,
+              "expected": "0.0",
+              "predicted": "0.0",
+              "code": "def kilometers(meters=0, miles=0, feet=0, nautical=0):\n    \n    ret = 0.\n    if meters:\n        ret += meters / 1000.\n    if feet:\n        ret += feet / ft(1.)\n    if nautical:\n        ret += nautical / nm(1.)\n    ret += miles * 1.609344\n    return ret"
+            },
+            {
+              "correct": false,
+              "expected": "'41.5, 81.0, 2.5km'",
+              "predicted": "41.5, 81.0",
+              "code": "def format_decimal(self, altitude=None):\n        \n        coordinates = [str(self.latitude), str(self.longitude)]\n\n        if altitude is None:\n            altitude = bool(self.altitude)\n        if altitude:\n            if not isinstance(altitude, str):\n                altitude = 'km'\n            coordinates.append(self.format_altitude(altitude))\n\n        return \", \".join(coordinates)"
+            },
+            {
+              "correct": false,
+              "expected": "2741.0",
+              "predicted": "XLDateBadTuple(\"Invalid month: (1907, 7, 3)\")",
+              "code": "def xldate_from_date_tuple(date_tuple, datemode):\n    \n    year, month, day = date_tuple\n\n    if datemode not in (0, 1):\n        raise XLDateBadDatemode(datemode)\n\n    if year == 0 and month == 0 and day == 0:\n        return 0.00\n\n    if not (1900 <= year <= 9999):\n        raise XLDateBadTuple(\"Invalid year: %r\" % ((year, month, day),))\n    if not (1 <= month <= 12):\n        raise XLDateBadTuple(\"Invalid month: %r\" % ((year, month, day),))\n    if  day < 1 \\\n    or (day > _days_in_month[month] and not(day == 29 and month == 2 and _leap(year))):\n        raise XLDateBadTuple(\"Invalid day: %r\" % ((year, month, day),))\n\n    Yp = year + 4716\n    M = month\n    if M <= 2:\n        Yp = Yp - 1\n        Mp = M + 9\n    else:\n        Mp = M - 3\n    jdn = ifd(1461 * Yp, 4) + ifd(979 * Mp + 16, 32) + \\\n        day - 1364 - ifd(ifd(Yp + 184, 100) * 3, 4)\n    xldays = jdn - _JDN_delta[datemode]\n    if xldays <= 0:\n        raise XLDateBadTuple(\"Invalid (year, month, day): %r\" % ((year, month, day),))\n    if xldays < 61 and datemode == 0:\n        raise XLDateAmbiguous(\"Before 1900-03-01: %r\" % ((year, month, day),))\n    return float(xldays)"
+            }
+          ]
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.40229885057471265,
+        "type_accuracy": {
+          "Constant Assignment": 0.7714285714285715,
+          "Assignment": 0.0625,
+          "Arithmetic Assignment": 0.0821917808219178,
+          "Branch": 0.85,
+          "API": 0.017857142857142856
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "Qwen2.5-14B-Instruct-1M": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.43486238532110094,
+        "type_accuracy": {
+          "Assignment": 0.47058823529411764,
+          "Branch": 0.7666666666666667,
+          "API": 0.20242914979757085,
+          "Arithmetic Assignment": 0.4027777777777778,
+          "Constant Assignment": 0.8382352941176471
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.3879310344827586,
+        "type_accuracy": {
+          "Constant Assignment": 0.8,
+          "Assignment": 0.03125,
+          "Arithmetic Assignment": 0.0136986301369863,
+          "Branch": 0.8583333333333333,
+          "API": 0.017857142857142856
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "Qwen2.5-Coder-7B-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.3155963302752294,
+        "type_accuracy": {
+          "Assignment": 0.4264705882352941,
+          "Branch": 0.4222222222222222,
+          "API": 0.12550607287449392,
+          "Arithmetic Assignment": 0.2916666666666667,
+          "Constant Assignment": 0.7794117647058824
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.2413793103448276,
+        "type_accuracy": {
+          "Constant Assignment": 0.8,
+          "Assignment": 0.09375,
+          "Arithmetic Assignment": 0.0547945205479452,
+          "Branch": 0.36666666666666664,
+          "API": 0.03571428571428571
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "Phi-4-mini-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.3229357798165138,
+        "type_accuracy": {
+          "Assignment": 0.45588235294117646,
+          "Branch": 0.43333333333333335,
+          "API": 0.11336032388663968,
+          "Arithmetic Assignment": 0.4027777777777778,
+          "Constant Assignment": 0.7205882352941176
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.22988505747126436,
+        "type_accuracy": {
+          "Constant Assignment": 0.7714285714285715,
+          "Assignment": 0.046875,
+          "Arithmetic Assignment": 0.0273972602739726,
+          "Branch": 0.39166666666666666,
+          "API": 0.017857142857142856
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "Phi-3.5-mini-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.21651376146788992,
+        "type_accuracy": {
+          "Assignment": 0.11764705882352941,
+          "Branch": 0.32222222222222224,
+          "API": 0.11336032388663968,
+          "Arithmetic Assignment": 0.18055555555555555,
+          "Constant Assignment": 0.5882352941176471
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.16379310344827586,
+        "type_accuracy": {
+          "Constant Assignment": 0.8857142857142857,
+          "Assignment": 0.109375,
+          "Arithmetic Assignment": 0.0,
+          "Branch": 0.14166666666666666,
+          "API": 0.03571428571428571
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "granite-3.2-8b-instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.10825688073394496,
+        "type_accuracy": {
+          "Assignment": 0.0,
+          "Branch": 0.6555555555555556,
+          "API": 0.0,
+          "Arithmetic Assignment": 0.0,
+          "Constant Assignment": 0.0
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.3132183908045977,
+        "type_accuracy": {
+          "Constant Assignment": 0.0,
+          "Assignment": 0.0,
+          "Arithmetic Assignment": 0.0,
+          "Branch": 0.9083333333333333,
+          "API": 0.0
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "DeepSeek-Coder-V2-Lite-Instruct": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.3412844036697248,
+        "type_accuracy": {
+          "Assignment": 0.45588235294117646,
+          "Branch": 0.4,
+          "API": 0.1700404858299595,
+          "Arithmetic Assignment": 0.4444444444444444,
+          "Constant Assignment": 0.6617647058823529
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.16091954022988506,
+        "type_accuracy": {
+          "Constant Assignment": 0.7428571428571429,
+          "Assignment": 0.046875,
+          "Arithmetic Assignment": 0.0136986301369863,
+          "Branch": 0.21666666666666667,
+          "API": 0.0
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-7B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.1834862385321101,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Assignment": 0.17647058823529413,
+          "Branch": 0.24444444444444444,
+          "API": 0.09716599190283401,
+          "Arithmetic Assignment": 0.1111111111111111,
+          "Constant Assignment": 0.5
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.10919540229885058,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Constant Assignment": 0.6285714285714286,
+          "Assignment": 0.015625,
+          "Arithmetic Assignment": 0.0,
+          "Branch": 0.125,
+          "API": 0.0
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Llama-8B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.23486238532110093,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Assignment": 0.20588235294117646,
+          "Branch": 0.5777777777777777,
+          "API": 0.09716599190283401,
+          "Arithmetic Assignment": 0.20833333333333334,
+          "Constant Assignment": 0.3382352941176471
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.11781609195402298,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Constant Assignment": 0.4857142857142857,
+          "Assignment": 0.0,
+          "Arithmetic Assignment": 0.0,
+          "Branch": 0.2,
+          "API": 0.0
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-14B": {
+    "pt0": {
+      "python": {
+        "overall_accuracy": 0.41834862385321103,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Assignment": 0.5147058823529411,
+          "Branch": 0.7222222222222222,
+          "API": 0.2145748987854251,
+          "Arithmetic Assignment": 0.4444444444444444,
+          "Constant Assignment": 0.6323529411764706
+        },
+        "type_counts": {
+          "Assignment": 68,
+          "Branch": 90,
+          "API": 247,
+          "Arithmetic Assignment": 72,
+          "Constant Assignment": 68
+        }
+      },
+      "c": {
+        "overall_accuracy": 0.1206896551724138,
+        "is_block_based": false,
+        "type_accuracy": {
+          "Constant Assignment": 0.45714285714285713,
+          "Assignment": 0.0,
+          "Arithmetic Assignment": 0.0136986301369863,
+          "Branch": 0.20833333333333334,
+          "API": 0.0
+        },
+        "type_counts": {
+          "Constant Assignment": 35,
+          "Assignment": 64,
+          "Arithmetic Assignment": 73,
+          "Branch": 120,
+          "API": 56
+        }
+      }
+    }
+  }
+}

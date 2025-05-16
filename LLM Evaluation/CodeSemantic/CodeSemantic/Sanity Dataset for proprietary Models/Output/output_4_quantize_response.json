@@ -1,0 +1,82 @@
+[
+    {
+      "idx": 0,
+      "response": "<ans>Mixed String</ans>"
+    },
+    {
+      "idx": 1,
+      "response": "<ans>Alphabetic String</ans>"
+    },
+    {
+      "idx": 2,
+      "response": "<ans>Mixed String</ans>"
+    },
+    {
+      "idx": 3,
+      "response": "<ans>Non-Empty List</ans>"
+    },
+    {
+      "idx": 4,
+      "response": "<ans>Non-Empty List</ans>"
+    },
+    {
+      "idx": 5,
+      "response": "<ans>Mixed String</ans>"
+    },
+    {
+      "idx": 6,
+      "response": "<ans>Positive Large</ans>"
+    },
+    {
+      "idx": 7,
+      "response": "<ans>zero</ans>"
+    },
+    {
+      "idx": 8,
+      "response": "<ans>Positive Large</ans>"
+    },
+    {
+      "idx": 9,
+      "response": "<ans>Positive Large</ans>"
+    },
+    {
+      "idx": 10,
+      "response": "<ans>Positive Small</ans>"
+    },
+    {
+      "idx": 11,
+      "response": "<ans>Mixed String</ans>"
+    },
+    {
+      "idx": 12,
+      "response": "<ans>Non-Empty tuple</ans>"
+    },
+    {
+      "idx": 13,
+      "response": "<ans>Positive Large</ans>"
+    },
+    {
+      "idx": 14,
+      "response": "<ans>Non-Empty tuple</ans>"
+    },
+    {
+      "idx": 15,
+      "response": "<ans>Mixed String</ans>"
+    },
+    {
+      "idx": 16,
+      "response": "<ans>Non-Empty tuple</ans>"
+    },
+    {
+      "idx": 17,
+      "response": "<ans>Non-Empty dictionary</ans>"
+    },
+    {
+      "idx": 18,
+      "response": "<ans>Empty dictionary</ans>"
+    },
+    {
+      "idx": 19,
+      "response": "<ans>Mixed String</ans>"
+    }
+  ]

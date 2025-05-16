@@ -1,0 +1,134 @@
+{
+  "Qwen2.5-14B-Instruct-1M": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.48598130841121495
+        },
+        "body": {
+          "overall_accuracy": 0.205607476635514
+        }
+      }
+    }
+  },
+  "Llama-3.1-8B-Instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.29906542056074764
+        },
+        "body": {
+          "overall_accuracy": 0.12149532710280374
+        }
+      }
+    }
+  },
+  "Qwen2.5-Coder-7B-Instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.42990654205607476
+        },
+        "body": {
+          "overall_accuracy": 0.1308411214953271
+        }
+      }
+    }
+  },
+  "DeepSeek-Coder-V2-Lite-Instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.38317757009345793
+        },
+        "body": {
+          "overall_accuracy": 0.2336448598130841
+        }
+      }
+    }
+  },
+  "Phi-4-mini-instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.3644859813084112
+        },
+        "body": {
+          "overall_accuracy": 0.1588785046728972
+        }
+      }
+    }
+  },
+  "Phi-3.5-mini-instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.2803738317757009
+        },
+        "body": {
+          "overall_accuracy": 0.1308411214953271
+        }
+      }
+    }
+  },
+  "granite-3.2-8b-instruct": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.17757009345794392
+        },
+        "body": {
+          "overall_accuracy": 0.028037383177570093
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-7B": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.308411214953271
+        },
+        "body": {
+          "overall_accuracy": 0.028037383177570093
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Llama-8B": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.34579439252336447
+        },
+        "body": {
+          "overall_accuracy": 0.102803738317757
+        }
+      }
+    }
+  },
+  "DeepSeek-R1-Distill-Qwen-14B": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.45794392523364486
+        },
+        "body": {
+          "overall_accuracy": 0.14018691588785046
+        }
+      }
+    }
+  },
+  "granite-3.2-8b-instruct-preview": {
+    "pt0": {
+      "python": {
+        "iteration": {
+          "overall_accuracy": 0.16822429906542055
+        },
+        "body": {
+          "overall_accuracy": 0.028037383177570093
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+semantic_env/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.vscode/
+
+.env
+
+CodeSemantic/Detailed_Results/
+

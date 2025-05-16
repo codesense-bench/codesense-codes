@@ -1,0 +1,8 @@
+numpy
+pandas
+tqdm
+tree-sitter
+tree-sitter-languages
+PyYAML
+jsonlines
+lxml

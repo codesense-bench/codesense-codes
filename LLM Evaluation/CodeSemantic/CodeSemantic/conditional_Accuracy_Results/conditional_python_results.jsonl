@@ -1,0 +1,14 @@
+{"Model": "Llama-3.1-8B-Instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.5793991416309013}
+{"Model": "Qwen2.5-14B-Instruct-1M", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7854077253218884}
+{"Model": "Phi-3.5-mini-instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.3218884120171674}
+{"Model": "granite-3.2-8b-instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7424892703862661}
+{"Model": "DeepSeek-R1-Distill-Qwen-7B", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.463519313304721}
+{"Model": "DeepSeek-R1-Distill-Llama-8B", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.5579399141630901}
+{"Model": "DeepSeek-R1-Distill-Qwen-14B", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7124463519313304}
+{"Model": "granite-3.2-8b-instruct-preview", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7467811158798283}
+{"Model": "Qwen2.5-Coder-7B-Instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.2446351931330472}
+{"Model": "DeepSeek-Coder-V2-Lite-Instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.23605150214592274}
+{"Model": "Phi-4-mini-instruct", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.27896995708154504}
+{"Model": "gpt-4o-mini", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7725321888412017}
+{"Model": "anthropic.claude-3-5-sonnet-20241022-v2:0", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7854077253218884}
+{"Model": "gemini-1.5-flash-002", "Prediction": "conditional", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.7296137339055794}
