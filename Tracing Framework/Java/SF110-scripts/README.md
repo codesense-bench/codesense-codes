@@ -27,18 +27,3 @@ To run the tracer (WIP), see:
 ```bash
 python3 add_jdwp_options.py # Add the option "traced.wait" to all build.xml files
 ```
-
-# Citation
-
-If you use this software, please cite it as below.
-
-```
-@software{Steenhoek_SF110_support_scripts_2024,
-author = {Steenhoek, Benjamin Jeremiah},
-month = feb,
-title = {{SF110 support scripts}},
-url = {https://github.com/bstee615/SF110-scripts},
-version = {1.0.0},
-year = {2024}
-}
-```
