@@ -1,0 +1,1 @@
+{"Model": "DeepSeek-R1-Distill-Qwen-7B", "Prediction": "loop", "Prompt": 1, "Incontext": "different", "CoT": "no", "shot": 0, "quantization": "no", "accuracy": 0.4953271028037383, "settings": "iteration"}

@@ -19,7 +19,9 @@ for model_id in 7; do
                         --shot $shot \
                         --incontext $incontext \
                         --CoT $CoT \
-                        --quantized_prediction $quantized
+                        --quantized_prediction $quantized \
+                        --quantized_random no \
+                        --API_def no
                 done
             done
         done
@@ -39,7 +41,9 @@ done
                         --shot $shot \
                         --incontext $incontext \
                         --CoT $CoT \
-                        --quantized_prediction $quantized
+                        --quantized_prediction $quantized \
+                        --quantized_random no \
+                        --API_def no
                 done
             done
         done

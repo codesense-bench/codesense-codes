@@ -27,7 +27,9 @@ for model_id in {7..17}; do
             --shot 0 \
             --incontext different \
             --CoT no \
-            --quantized_prediction no
+            --quantized_prediction no\
+            --quantized_random no \
+            --API_def no 
     done
 
     # for data_id in 13 14 15; do

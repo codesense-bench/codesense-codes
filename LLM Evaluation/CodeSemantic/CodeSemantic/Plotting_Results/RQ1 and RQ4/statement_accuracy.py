@@ -21,11 +21,12 @@ REASONING_MODELS = {
 PAID_MODELS = {
     "anthropic.claude-3-5-sonnet-20241022-v2:0",
     "gemini-1.5-flash-002",
+    "gpt-4o-mini",
 }
 
 # Load and process data
 data = []
-with open("/home/XXX/CodeSemantic/CodeSemantic/statement_Accuracy_Results/statement_results.jsonl", "r") as f:
+with open("/home/XXX/CodeSemantic/CodeSemantic/statement_Accuracy_Results/statement_c_results.jsonl", "r") as f:
     for line in f:
         data.append(json.loads(line))
 
@@ -175,7 +176,7 @@ for quant in ["yes", "no"]:
     legend_elements.append(Patch(facecolor='white', edgecolor='black', 
                                  label='Non-Reasoning Model'))
     
-    plt.xlabel("Model")
+    #plt.xlabel("Model")
     plt.ylabel("Average Accuracy")
     plt.title(f"Accuracy by Model and Statement Type")
     plt.xticks(x + (n_types-1)*bar_width/2, avg_acc.index, rotation=45, ha='right')

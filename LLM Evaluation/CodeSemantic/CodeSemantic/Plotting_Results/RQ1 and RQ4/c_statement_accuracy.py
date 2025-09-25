@@ -29,17 +29,34 @@ for record in data:
                 "Type": typ,
                 "Accuracy": acc,
                 "Model": record["Model"],
-                "Quant": "no"  # Add explicitly for consistency
+                "Quant": "no"
             })
 
 type_df = pd.DataFrame(type_acc)
+
+# Model categorization
+REASONING_MODELS = {
+    "DeepSeek-R1-Distill-Qwen-7B",
+    "DeepSeek-R1-Distill-Llama-8B",
+    "DeepSeek-R1-Distill-Qwen-14B",
+    "granite-3.2-8b-instruct",
+    "granite-3.2-8b-instruct-preview",
+}
+
+PAID_MODELS = {
+    "anthropic.claude-3-5-sonnet-20241022-v2:0",
+    "gemini-1.5-flash-002",
+    "gpt-4o-mini",
+}
 
 # Map type labels to nicer names
 def map_labels(label):
     label_mapping = {
         "API": "Function Call",
-        "Assignment": "Variable Assignment",
+        "Assignment": "Variable",
         "Arithmetic Assignment": "Arithmetic",
+        "Constant Assignment": "Constant",
+        "Branch": "Boolean"
     }
     return label_mapping.get(label, label)
 
@@ -69,21 +86,25 @@ plt.tight_layout()
 plt.savefig("c_average_statement_accuracy_non_quant_0_shot.png", dpi=300, bbox_inches="tight")
 plt.show()
 
-# Model-specific plots with reasoning distinction
-REASONING_MODELS = ["DeepReasoner", "CoT-LLM", "LLaMa-CoT"]  # Example, replace with actual model names
-
-# Filter relevant models
-models = type_df['Model'].unique()
-reasoning_models = [m for m in models if m in REASONING_MODELS]
-non_reasoning_models = [m for m in models if m not in REASONING_MODELS]
-sorted_models = non_reasoning_models + reasoning_models
-
+# Model-specific plots with reasoning and paid distinctions
+# Filter relevant models and sort
+all_models = type_df['Model'].unique()
+# Updated model sorting logic
+sorted_models = sorted(
+    all_models,
+    key=lambda x: (
+        # Primary sort: 0=non-reasoning, 1=paid, 2=reasoning
+        1 if x in PAID_MODELS else 2 if x in REASONING_MODELS else 0,
+        # Secondary sort: alphabetical
+        x
+    )
+)
 type_df = type_df[type_df['Model'].isin(sorted_models)]
 type_df['Model'] = pd.Categorical(type_df['Model'], categories=sorted_models, ordered=True)
 
 avg_acc = type_df.groupby(["Model", "Type"])["Accuracy"].mean().unstack()
 
-plt.figure(figsize=(14, 7))
+plt.figure(figsize=(16, 8))
 colors = sns.color_palette("Paired", len(avg_acc.columns))
 
 n_models = len(avg_acc.index)
@@ -91,35 +112,40 @@ n_types = len(avg_acc.columns)
 bar_width = 0.8 / n_types
 x = np.arange(n_models)
 
-# Create bars with reasoning indicators
+# Create bars with indicators
 for i, stype in enumerate(avg_acc.columns):
     for j, model in enumerate(avg_acc.index):
         is_reasoning = model in REASONING_MODELS
-        hatch = '///' if is_reasoning else None
-        edgecolor = 'red' if is_reasoning else 'black'
+        is_paid = model in PAID_MODELS
+        
+        # Visual properties
+        edgecolor = 'darkred' if is_reasoning else 'darkblue' if is_paid else 'black'
+        hatch = '////' if is_reasoning else '....' if is_paid else None
+        alpha = 0.9 if is_paid else 1.0  # Paid models slightly faded
 
         plt.bar(x[j] + i * bar_width, avg_acc[stype][j],
                 width=bar_width,
                 color=colors[i],
                 edgecolor=edgecolor,
-                hatch=hatch)
+                alpha=alpha,
+                hatch=hatch,
+                linewidth=1.2)
 
 # Create legend elements
-legend_elements = []
-for i, stype in enumerate(avg_acc.columns):
-    legend_elements.append(Patch(facecolor=colors[i], label=stype))
-legend_elements.append(Patch(facecolor='white', edgecolor='red',
-                             hatch='///', label='Reasoning Model'))
-legend_elements.append(Patch(facecolor='white', edgecolor='black',
-                             label='Non-Reasoning Model'))
+legend_elements = [
+    *[Patch(facecolor=colors[i], label=stype) for i, stype in enumerate(avg_acc.columns)],
+    Patch(facecolor='white', edgecolor='darkred', hatch='////', label='Reasoning Model'),
+    Patch(facecolor='white', edgecolor='darkblue', hatch='....', label='Paid Model'),
+    Patch(facecolor='white', edgecolor='black', label='Base Model')
+]
 
 plt.xlabel("Model")
 plt.ylabel("Average Accuracy")
-plt.title("C Code: Accuracy by Model and Statement Type (Non-Quantized)")
+plt.title("C Code: Accuracy by Model and Statement Type")
 plt.xticks(x + (n_types - 1) * bar_width / 2, avg_acc.index, rotation=45, ha='right')
 plt.ylim(0, 1.0)
 
-plt.legend(handles=legend_elements, title="Legend",
+plt.legend(handles=legend_elements, title="Categories",
            bbox_to_anchor=(1.05, 1), loc='upper left')
 
 plt.grid(axis="y", linestyle='--', alpha=0.7)

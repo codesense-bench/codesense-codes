@@ -13,6 +13,7 @@ with open("/home/XXX/CodeSemantic/CodeSemantic/statement_Accuracy_Results/statem
 PAID_MODELS = {
     "anthropic.claude-3-5-sonnet-20241022-v2:0",
     "gemini-1.5-flash-002",
+    "gpt-4o-mini",
 }
 
 # Reorganize data structure
@@ -40,14 +41,14 @@ for entry in data:
 # All models present in data
 all_models = list(model_results.keys())
 
-# List of paid models to exclude
-PAID_MODELS = {
-    "anthropic.claude-3-5-sonnet-20241022-v2:0",
-    "gemini-1.5-flash-002",
-}
+# # List of paid models to exclude
+# PAID_MODELS = {
+#     "anthropic.claude-3-5-sonnet-20241022-v2:0",
+#     "gemini-1.5-flash-002",
+# }
 
 # Filter out paid models
-models = [model for model in all_models if model not in PAID_MODELS]
+models = [model for model in all_models]
 
 # Color settings
 colors = {'same': '#1f77b4', 'different': '#ff7f0e'}  
@@ -74,9 +75,10 @@ def create_incontext_comparison_plot(quant_mode):
                       edgecolor='white', linewidth=0.5)
     
     # Title formatting
-    display_mode = "Concrete" if quant_mode == "non_quantized" else "Quantized"
+    display_mode = "Concrete" if quant_mode == "non_quantized" else "Abstract"
     
     # Axes and legend
+    ax.set_title(f'{display_mode} value accuracy comparision (3-shot)', pad=20)
     ax.set_xticks(x)
     ax.set_xticklabels(models, rotation=45, ha='right')
     ax.set_ylabel('Accuracy')

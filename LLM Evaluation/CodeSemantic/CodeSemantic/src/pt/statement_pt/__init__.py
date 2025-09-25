@@ -2,10 +2,60 @@ from ..abst_pt import AbstPt
 import sys
 from .prompt_template import PROMPT_REGISTRY
 from .prompting_utils import incontext_prompt_generator
+from .API_description import *
 sys.path.append('/home/XXX/CodeSemantic/CodeSemantic')
 from dataset_utils import incontext_shots_with_same_statement
 import json
+import random
 
+
+ALL_MAPPINGS = {
+    "int": {
+        "value == 0": "zero",
+        "0 < value <= 10": "Positive Regular",
+        "value > 10": "Positive Large",
+        "-10 <= value < 0": "Negative Regular",
+        "value < -10": "Negative Large"
+    },
+    "float": {
+        "value == 0.0": "zero",
+        "0.0 < value <= 1.0": "Positive Small",
+        "1.0 < value <= 10.0": "Positive Regular",
+        "value > 10.0": "Positive Large",
+        "-1.0 <= value < 0.0": "Negative Small",
+        "-10.0 <= value < -1.0": "Negative Regular",
+        "value < -10.0": "Negative Large"
+    },
+    "str": {
+        "len(value) == 0": "Empty String",
+        "len(value) > 0 and value.isalpha()": "Alphabetic String",
+        "len(value) > 0 and value.isdigit()": "Numeric String",
+        "len(value) > 0 and not (value.isalpha() or value.isdigit())": "Mixed String"
+    },
+    "list": {
+        "len(value) == 0": "Empty List",
+        "len(value) > 0": "Non-Empty List"
+    },
+    "tuple": {
+        "len(value) == 0": "Empty tuple",
+        "len(value) > 0": "Non-Empty tuple"
+    },
+    "dict": {
+        "len(value) == 0": "Empty dictionary",
+        "len(value) > 0": "Non-Empty dictionary"
+    },
+    "set": {
+        "len(value) == 0": "Empty set",
+        "len(value) > 0": "Non-Empty set"
+    },
+    "bool": {
+        "value == True": "True",
+        "value == False": "False"
+    },
+    "NoneType": {
+        "value is None": "None"
+    }
+}
 
 
 class StatementPt1(AbstPt):
@@ -36,16 +86,24 @@ class StatementPt1(AbstPt):
             demos = self.demos 
         
         if self.args.quantized_prediction == "yes":
-            if self.args.prediction == "statement" or self.args.prediction == "block" or self.args.prediction == "loop":
-                mapping_rules = task['mapping_info']
-            elif self.args.prediction == "input":
-                mapping_rules = task['input_mapping_info']
-            elif self.args.prediction == "output":
-                mapping_rules = task['output_mapping_info']
- 
-            rules_list = "\n".join([f"- {k} → {v}" for k, v in mapping_rules.items()])
-            
-            quantize_str += f"You MUST ONLY predict values that follow these quantization rules:\n{rules_list}.\nYour output MUST be one of the allowed quantized values.\n"
+            if self.args.quantized_random == "yes":
+                selected_type = random.choice(list(ALL_MAPPINGS.keys()))
+                type_rules = ALL_MAPPINGS[selected_type]
+                quantize_str = "You MUST predict quantized values, I will provide you a random data type value to quantized value mapping example:\n"
+                
+                rules_list = "\n".join([f"- {k} → {v}" for k, v in type_rules.items()])
+                quantize_str += f"\n**For {selected_type} values**:\n{rules_list}\n"
+            else:
+                if self.args.prediction == "statement" or self.args.prediction == "block" or self.args.prediction == "loop":
+                    mapping_rules = task['mapping_info']
+                elif self.args.prediction == "input":
+                    mapping_rules = task['input_mapping_info']
+                elif self.args.prediction == "output":
+                    mapping_rules = task['output_mapping_info']
+    
+                rules_list = "\n".join([f"- {k} → {v}" for k, v in mapping_rules.items()])
+                
+                quantize_str += f"You MUST ONLY predict values that follow these quantization rules:\n{rules_list}.\nYour output MUST be one of the allowed quantized values.\n"
 
         if self.args.prediction == "output":
             pt = self.get_template(self.args.prediction)
@@ -149,6 +207,7 @@ class StatementPt1(AbstPt):
                 quantize_str = ""
                         
             elif task['Statement Type'] == "API":
+                api_description = ""
                 pt = self.get_template("api")
                 pt = pt.format(
                     lang=task['Programming Language'].lower(),
@@ -156,6 +215,34 @@ class StatementPt1(AbstPt):
                     statement=task['Selected Statement'],
                     variables=task['Variable Values Before Statement'],
                 )
+                if self.args.API_def == "yes":
+                    api_name = extract_api_name(task['Selected Statement'])
+                    if api_name:
+                        try:
+                            description = get_api_description(api_name)
+                            if description:
+                                #print(description)
+                                api_description += description
+                                
+                        except Exception as e:
+                            print()
+                            #print(f"Error fetching docs: {str(e)}")
+                elif self.args.API_def == "code":
+                    api_name = extract_api_name(task['Selected Statement'])
+                    if api_name:
+                        try:
+                            description = get_api_code(api_name)
+                            if description:
+                                #print(description)
+                                api_description += description
+                                
+                        except Exception as e:
+                            print()
+                            #print(f"Error fetching docs: {str(e)}")
+                    
+                pt = pt + "\n"+ api_description
+                
+                
             else:
                 pt = self.get_template("assignment")
                 pt = pt.format(
@@ -173,9 +260,9 @@ class StatementPt1(AbstPt):
             msg = self.demo2msg(demos)
             pt = msg + pt + "\n"+quantize_str
 
-        # with open('/home/XXX/CodeSemantic/CodeSemantic/alias_prompt.txt', 'w') as f:
+        # with open('/home/XXX/CodeSemantic/CodeSemantic/statement_prompt.txt', 'a') as f:
         #     f.write(pt)
-        # print(pt)
+        #print(pt)
         return pt
 
     def extract_ans(self, prompt_str, llm_output_str):

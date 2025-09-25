@@ -241,7 +241,7 @@ PROMPT_REGISTRY = {
     },
     "pt1": {
         "statement_msg": (
-            "Here's some {lang} code. Each example highlights a single statement of (assignment, branch, or function calls) and shows you what the variable values look like just before it runs.\n"
+            "Here's some {lang} code. Each example highlights a single statement of (assignment, branch, or function/API calls) and shows you what the variable values look like just before it runs.\n"
             "Your goal? Figure out what the result will be right after that statement runs.\n\n"
             "Here are {shot} examples to walk you through it:\n\n"
             "----------------------------------------\n"
@@ -266,7 +266,7 @@ PROMPT_REGISTRY = {
         ),
         "assignment": (
             "You’re given some {lang} code and one specific assignment line.\n"
-            "Here are the local variables just before that line runs. Can you figure out what the value of the assignment will be afterward?\n\n"
+            "Here are the local variables just before that line runs. Can you figure out what will be the final output of the statement '{statement}' after executing the statement??\n\n"
             "Code Snippet:\n"
             "```{lang}\n"
             "{code}\n"
@@ -277,16 +277,17 @@ PROMPT_REGISTRY = {
             "Answer using <ans></ans> tags, Do not include any extra information."
         ),
         "branch": (
-            "Here’s a branch (if) statement in {lang}, and the values of the variables it uses.\n"
-            "Will the branch run? Answer 'Yes' or 'No'.\n\n"
-            "Code:\n"
+            "Given the following {lang} code snippet and the selected boolean expression statement, "
+            "the local variable values before the boolean expression statements are shown as follows, "
+            "Will the true branch of '{statement} be executed'? Please answer \"Yes\" for True or \"No\" for False.\n\n"
+            "Code Snippet\n"
             "```{lang}\n"
             "{code}\n"
             "```\n\n"
-            "Branch Statement: {statement}\n\n"
-            "Condition Variables:\n"
+            "Selected boolean expression Statement: {statement}\n\n"
+            "If Expression Variables:\n"
             "{variables}\n\n"
-            "Answer using <ans></ans> tags, Do not include any extra information."
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
         ),
         "conditional": (
             "Here’s a branch (if) block statement in {lang}.\n"
@@ -852,6 +853,726 @@ PROMPT_REGISTRY = {
             "2. Backward propagation\n"
             "3. Input requirements\n"
             "Solution -> <ans></ans>."
+        )
+    },
+    "pt5": {
+        "statement_msg": (
+            "You will be given {lang} code snippets with different types of statements "
+            "(assignment, boolean, or function calls). For each, you'll see:\n"
+            "1. The complete code snippet\n"
+            "2. A highlighted statement\n"
+            "3. Variable values before that statement executes\n\n"
+            "Your task is to predict the final output after the statement executes.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "block_msg": (
+            "You will be given {lang} code blocks with specific statements highlighted. "
+            "For each, you'll see:\n"
+            "1. The complete code block\n"
+            "2. A highlighted statement\n"
+            "3. The code block input\n\n"
+            "Your task is to predict the value after executing the highlighted statement based on the given code block input.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "loop_msg": (
+            "You will be given {lang} code snippets containing loops with:\n"
+            "1. The complete loop structure\n"
+            "2. Specific input values\n"
+            "3. Questions about loop behavior\n\n"
+            "Your task is to analyze the loop's execution or value of a variable after loop's execution based on the given inputs.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "input_output_msg": (
+            "You will be given {lang} code snippets with:\n"
+            "1. Complete function implementations\n"
+            "2. Either input or output values specified\n\n"
+            "Your task is to:\n"
+            "- Predict outputs when given inputs\n"
+            "- Determine inputs when given outputs\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "assignment": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values before the statements are shown as follows, "
+            "what will be the final output of the selected {statement} after executing the statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Local Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "branch": (
+            "Given the following {lang} code snippet and the selected boolean expression statement, "
+            "the local variable values before the boolean expression statements are shown as follows, "
+            "Will the output of {statement} be True or False? Please answer \"Yes\" for True or \"No\" for False.\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected boolean expression: {statement}\n\n"
+            "If Expression Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "conditional": (
+            "Given the following {lang} code snippet and the selected branch statement, "
+            "the local variable values before the branch statements are shown as follows, "
+            "Will the nvidbranch be executed based on the condition expression variable values? Please answer \"Yes\" or \"No\".\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question: {question}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "api": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values of the api/function parameters are shown as follows, "
+            "what will be the output after the selected API/Function call?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected API/Function: {statement}\n\n"
+            "API/Function Parameters:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "block": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the input of the code snippet is given as follows, "
+            "what will be the value after executing the selected statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Function Inputs:\n"
+            "{inputs}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "output": (
+            "Given the following {lang} code snippet and input of the code, "
+            "what will be the output of the code given the input value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Inputs:\n"
+            "{input}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "input": (
+            "Given the following {lang} code snippet and output of the code, "
+            "what will be the input of the code given the output value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Output:\n"
+            "{output}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_iteration": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_body": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "alias": (
+            "Given the following {lang} code snippet and its input parameters:\n\n"
+            "You are given two pointer variables in the code:\n"
+            "- Pointer A: {pointer_1}\n"
+            "- Pointer B: {pointer_2}\n\n"
+            "Determine if these pointers are aliases (reference the same memory address).\n"
+            "Respond with:\n"
+            "- \"Yes\" if they point to the same memory location\n"
+            "- \"No\" if they point to different locations\n\n"
+            "Code:\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Input:\n"
+            "{input}\n\n"
+            "Question:\n"
+            "Do {pointer_1} and {pointer_2} in (line {line_1}) alias the same memory address?\n\n"
+            "Provide your answer within <ans></ans> tags."
+        ),
+        "assignment_cot": (
+            "1. Examine the assignment statement: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the right-hand side expression using these values\n"
+            "4. The result becomes the new value of the left-hand side variable"
+        ),
+        "branch_cot": (
+            "1. Examine the branch condition: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the conditional expression using these values\n"
+            "4. Determine if the condition is true or false\n"
+            "5. This determines whether the branch will be taken"
+        ),
+        "api_cot": (
+            "1. Examine the API call: '{statement}'\n"
+            "2. Current parameter values: {variables}\n"
+            "3. Determine what this API/function does with these parameters\n"
+            "4. Compute or predict the return value based on the function's logic"
+        ),
+        "block_cot": (
+            "1. Identify the highlighted statement {statement} in the code block\n"
+            "2. Examine the given inputs {input} and how they flow into the code\n"
+            "3. Trace the execution up to the highlighted statement\n"
+            "4. Determine the value produced by the highlighted statement\n"
+            "5. Verify the value based on the code logic and inputs"
+        ),
+        "loop_iteration_cot": (
+            "1. Initialize loop variables with starting values\n"
+            "2. Check the loop condition\n"
+            "3. Execute the loop body if condition is true\n"
+            "4. Update loop variables\n"
+            "5. Repeat until condition becomes false"
+        ),
+        "loop_body_cot": (
+            "1. Identify all variables used in the loop body\n"
+            "2. Check their values at current iteration\n"
+            "3. Execute each operation in sequence\n"
+            "4. Track how variables change during this iteration"
+        ),
+        "post_loop_analysis_cot": (  
+            "1. Identify the loop's exit condition (why it terminated)\n"  
+            "2. Check the final values of all modified loop variables\n"  
+            "3. Verify the last valid iteration before termination\n"  
+            "4. Check if loop was never entered (initial condition false)\n"  
+            "5. Trace the target variable's evolution through all iterations\n"  
+            "6. Account for breaks/continues or external side effects"  
+        ),
+        "output_cot": (
+            "1. Identify all input variables of {input} and their given values\n"
+            "2. Trace the execution path through the function step by step\n"
+            "3. For each operation:\n"
+            "   a. Identify which variables are involved\n"
+            "   b. Apply the operation to current values\n"
+            "   c. Update the variable states\n"
+            "4. When reaching return statement/output point:\n"
+            "   a. Note the final values of return variables\n"
+            "   b. Format the output according to function specification\n"
+            "5. Verify the output matches all transformations applied"
+        ),
+        "input_cot": (
+            "1. Analyze the given output value {output} and its structure\n"
+            "2. Work backwards through the function's operations:\n"
+            "   a. Identify the last transformation applied\n"
+            "   b. Determine what input would produce this output\n"
+            "   c. Move to previous operation in reverse order\n"
+            "3. For conditional branches:\n"
+            "   a. Determine which path must have been taken\n"
+            "   b. Note the necessary conditions for this path\n"
+            "4. For loops:\n"
+            "   a. Determine how many iterations occurred\n"
+            "   b. Track how variables changed each iteration\n"
+            "5. Verify the reconstructed input:\n"
+            "   a. Forward-execute with proposed input\n"
+            "   b. Confirm it produces the given output"
+        )
+    },
+    "pt6": {
+        "statement_msg": (
+            "You will be given {lang} code snippets with different types of statements "
+            "(assignment, boolean, or function calls). For each, you'll see:\n"
+            "1. The complete code snippet\n"
+            "2. A highlighted statement\n"
+            "3. Variable values before that statement executes\n\n"
+            "Your task is to predict the final output after the statement executes.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "block_msg": (
+            "You will be given {lang} code blocks with specific statements highlighted. "
+            "For each, you'll see:\n"
+            "1. The complete code block\n"
+            "2. A highlighted statement\n"
+            "3. The code block input\n\n"
+            "Your task is to predict the value after executing the highlighted statement based on the given code block input.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "loop_msg": (
+            "You will be given {lang} code snippets containing loops with:\n"
+            "1. The complete loop structure\n"
+            "2. Specific input values\n"
+            "3. Questions about loop behavior\n\n"
+            "Your task is to analyze the loop's execution or value of a variable after loop's execution based on the given inputs.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "input_output_msg": (
+            "You will be given {lang} code snippets with:\n"
+            "1. Complete function implementations\n"
+            "2. Either input or output values specified\n\n"
+            "Your task is to:\n"
+            "- Predict outputs when given inputs\n"
+            "- Determine inputs when given outputs\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "assignment": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values before the statements are shown as follows, "
+            "what will be the value assigned to the left-hand side variable of the selected statement after executing the selected statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Local Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "branch": (
+            "Given the following {lang} code snippet and the selected boolean expression statement, "
+            "the local variable values before the boolean expression statements are shown as follows, "
+            "Will the true branch {statement} be executed? Please answer \"Yes\" for True or \"No\" for False.\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected boolean expression Statement: {statement}\n\n"
+            "If Expression Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "conditional": (
+            "Given the following {lang} code snippet and the selected branch statement, "
+            "the local variable values before the branch statements are shown as follows, "
+            "Will the nvidbranch be executed based on the condition expression variable values? Please answer \"Yes\" or \"No\".\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question: {question}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "api": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values of the api/function parameters are shown as follows, "
+            "what will be the output after the selected API/Function call?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected API/Function: {statement}\n\n"
+            "API/Function Parameters:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "block": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the input of the code snippet is given as follows, "
+            "what will be the value after executing the selected statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Function Inputs:\n"
+            "{inputs}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "output": (
+            "Given the following {lang} code snippet and input of the code, "
+            "what will be the output of the code given the input value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Inputs:\n"
+            "{input}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "input": (
+            "Given the following {lang} code snippet and output of the code, "
+            "what will be the input of the code given the output value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Output:\n"
+            "{output}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_iteration": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_body": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "alias": (
+            "Given the following {lang} code snippet and its input parameters:\n\n"
+            "You are given two pointer variables in the code:\n"
+            "- Pointer A: {pointer_1}\n"
+            "- Pointer B: {pointer_2}\n\n"
+            "Determine if these pointers are aliases (reference the same memory address).\n"
+            "Respond with:\n"
+            "- \"Yes\" if they point to the same memory location\n"
+            "- \"No\" if they point to different locations\n\n"
+            "Code:\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Input:\n"
+            "{input}\n\n"
+            "Question:\n"
+            "Do {pointer_1} and {pointer_2} in (line {line_1}) alias the same memory address?\n\n"
+            "Provide your answer within <ans></ans> tags."
+        ),
+        "assignment_cot": (
+            "1. Examine the assignment statement: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the right-hand side expression using these values\n"
+            "4. The result becomes the new value of the left-hand side variable"
+        ),
+        "branch_cot": (
+            "1. Examine the branch condition: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the conditional expression using these values\n"
+            "4. Determine if the condition is true or false\n"
+            "5. This determines whether the branch will be taken"
+        ),
+        "api_cot": (
+            "1. Examine the API call: '{statement}'\n"
+            "2. Current parameter values: {variables}\n"
+            "3. Determine what this API/function does with these parameters\n"
+            "4. Compute or predict the return value based on the function's logic"
+        ),
+        "block_cot": (
+            "1. Identify the highlighted statement {statement} in the code block\n"
+            "2. Examine the given inputs {input} and how they flow into the code\n"
+            "3. Trace the execution up to the highlighted statement\n"
+            "4. Determine the value produced by the highlighted statement\n"
+            "5. Verify the value based on the code logic and inputs"
+        ),
+        "loop_iteration_cot": (
+            "1. Initialize loop variables with starting values\n"
+            "2. Check the loop condition\n"
+            "3. Execute the loop body if condition is true\n"
+            "4. Update loop variables\n"
+            "5. Repeat until condition becomes false"
+        ),
+        "loop_body_cot": (
+            "1. Identify all variables used in the loop body\n"
+            "2. Check their values at current iteration\n"
+            "3. Execute each operation in sequence\n"
+            "4. Track how variables change during this iteration"
+        ),
+        "post_loop_analysis_cot": (  
+            "1. Identify the loop's exit condition (why it terminated)\n"  
+            "2. Check the final values of all modified loop variables\n"  
+            "3. Verify the last valid iteration before termination\n"  
+            "4. Check if loop was never entered (initial condition false)\n"  
+            "5. Trace the target variable's evolution through all iterations\n"  
+            "6. Account for breaks/continues or external side effects"  
+        ),
+        "output_cot": (
+            "1. Identify all input variables of {input} and their given values\n"
+            "2. Trace the execution path through the function step by step\n"
+            "3. For each operation:\n"
+            "   a. Identify which variables are involved\n"
+            "   b. Apply the operation to current values\n"
+            "   c. Update the variable states\n"
+            "4. When reaching return statement/output point:\n"
+            "   a. Note the final values of return variables\n"
+            "   b. Format the output according to function specification\n"
+            "5. Verify the output matches all transformations applied"
+        ),
+        "input_cot": (
+            "1. Analyze the given output value {output} and its structure\n"
+            "2. Work backwards through the function's operations:\n"
+            "   a. Identify the last transformation applied\n"
+            "   b. Determine what input would produce this output\n"
+            "   c. Move to previous operation in reverse order\n"
+            "3. For conditional branches:\n"
+            "   a. Determine which path must have been taken\n"
+            "   b. Note the necessary conditions for this path\n"
+            "4. For loops:\n"
+            "   a. Determine how many iterations occurred\n"
+            "   b. Track how variables changed each iteration\n"
+            "5. Verify the reconstructed input:\n"
+            "   a. Forward-execute with proposed input\n"
+            "   b. Confirm it produces the given output"
+        )
+    },
+    "pt7": {
+        "statement_msg": (
+            "You will be given {lang} code snippets with different types of statements "
+            "(assignment, boolean, or function calls). For each, you'll see:\n"
+            "1. The complete code snippet\n"
+            "2. A highlighted statement\n"
+            "3. Variable values before that statement executes\n\n"
+            "Your task is to predict the final output after the statement executes.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "block_msg": (
+            "You will be given {lang} code blocks with specific statements highlighted. "
+            "For each, you'll see:\n"
+            "1. The complete code block\n"
+            "2. A highlighted statement\n"
+            "3. The code block input\n\n"
+            "Your task is to predict the value after executing the highlighted statement based on the given code block input.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "loop_msg": (
+            "You will be given {lang} code snippets containing loops with:\n"
+            "1. The complete loop structure\n"
+            "2. Specific input values\n"
+            "3. Questions about loop behavior\n\n"
+            "Your task is to analyze the loop's execution or value of a variable after loop's execution based on the given inputs.\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "input_output_msg": (
+            "You will be given {lang} code snippets with:\n"
+            "1. Complete function implementations\n"
+            "2. Either input or output values specified\n\n"
+            "Your task is to:\n"
+            "- Predict outputs when given inputs\n"
+            "- Determine inputs when given outputs\n\n"
+            "Here are {shot} worked examples:\n\n"
+            "----------------------------------------\n"
+        ),
+        "assignment": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values before the statements are shown as follows, "
+            "what will be the final output of the selected statement after executing the selected statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Local Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "branch": (
+            "Given the following {lang} code snippet and the selected boolean expression statement, "
+            "the local variable values before the boolean expression statements are shown as follows, "
+            "What's the output of the statement {statement}? Please answer \"Yes\" for True or \"No\" for False.\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected boolean expression Statement: {statement}\n\n"
+            "If Expression Variables:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "conditional": (
+            "Given the following {lang} code snippet and the selected branch statement, "
+            "the local variable values before the branch statements are shown as follows, "
+            "Will the branch be executed based on the condition expression variable values? Please answer \"Yes\" or \"No\".\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question: {question}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "api": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the local variable values of the api/function parameters are shown as follows, "
+            "what will be the output after the selected API/Function call?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected API/Function: {statement}\n\n"
+            "API/Function Parameters:\n"
+            "{variables}\n\n"
+            "Please put your answer in the <ans></ans> tags, Do not include any extra information."
+        ),
+        "block": (
+            "Given the following {lang} code snippet and the selected statement, "
+            "the input of the code snippet is given as follows, "
+            "what will be the value after executing the selected statement?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Selected Statement: {statement}\n\n"
+            "Function Inputs:\n"
+            "{inputs}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "output": (
+            "Given the following {lang} code snippet and input of the code, "
+            "what will be the output of the code given the input value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Inputs:\n"
+            "{input}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "input": (
+            "Given the following {lang} code snippet and output of the code, "
+            "what will be the input of the code given the output value?\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Output:\n"
+            "{output}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_iteration": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "loop_body": (
+            "Given the following {lang} code snippet with function call showing the input of the code,\n\n"
+            "Code Snippet\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Question:\n"
+            "{question}\n\n"
+            "Please put your answer in the <ans></ans> tags"
+        ),
+        "alias": (
+            "Given the following {lang} code snippet and its input parameters:\n\n"
+            "You are given two pointer variables in the code:\n"
+            "- Pointer A: {pointer_1}\n"
+            "- Pointer B: {pointer_2}\n\n"
+            "Determine if these pointers are aliases (reference the same memory address).\n"
+            "Respond with:\n"
+            "- \"Yes\" if they point to the same memory location\n"
+            "- \"No\" if they point to different locations\n\n"
+            "Code:\n"
+            "```{lang}\n"
+            "{code}\n"
+            "```\n\n"
+            "Function Input:\n"
+            "{input}\n\n"
+            "Question:\n"
+            "Do {pointer_1} and {pointer_2} in (line {line_1}) alias the same memory address?\n\n"
+            "Provide your answer within <ans></ans> tags."
+        ),
+        "assignment_cot": (
+            "1. Examine the assignment statement: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the right-hand side expression using these values\n"
+            "4. The result becomes the new value of the left-hand side variable"
+        ),
+        "branch_cot": (
+            "1. Examine the branch condition: '{statement}'\n"
+            "2. Current variable values: {variables}\n"
+            "3. Evaluate the conditional expression using these values\n"
+            "4. Determine if the condition is true or false\n"
+            "5. This determines whether the branch will be taken"
+        ),
+        "api_cot": (
+            "1. Examine the API call: '{statement}'\n"
+            "2. Current parameter values: {variables}\n"
+            "3. Determine what this API/function does with these parameters\n"
+            "4. Compute or predict the return value based on the function's logic"
+        ),
+        "block_cot": (
+            "1. Identify the highlighted statement {statement} in the code block\n"
+            "2. Examine the given inputs {input} and how they flow into the code\n"
+            "3. Trace the execution up to the highlighted statement\n"
+            "4. Determine the value produced by the highlighted statement\n"
+            "5. Verify the value based on the code logic and inputs"
+        ),
+        "loop_iteration_cot": (
+            "1. Initialize loop variables with starting values\n"
+            "2. Check the loop condition\n"
+            "3. Execute the loop body if condition is true\n"
+            "4. Update loop variables\n"
+            "5. Repeat until condition becomes false"
+        ),
+        "loop_body_cot": (
+            "1. Identify all variables used in the loop body\n"
+            "2. Check their values at current iteration\n"
+            "3. Execute each operation in sequence\n"
+            "4. Track how variables change during this iteration"
+        ),
+        "post_loop_analysis_cot": (  
+            "1. Identify the loop's exit condition (why it terminated)\n"  
+            "2. Check the final values of all modified loop variables\n"  
+            "3. Verify the last valid iteration before termination\n"  
+            "4. Check if loop was never entered (initial condition false)\n"  
+            "5. Trace the target variable's evolution through all iterations\n"  
+            "6. Account for breaks/continues or external side effects"  
+        ),
+        "output_cot": (
+            "1. Identify all input variables of {input} and their given values\n"
+            "2. Trace the execution path through the function step by step\n"
+            "3. For each operation:\n"
+            "   a. Identify which variables are involved\n"
+            "   b. Apply the operation to current values\n"
+            "   c. Update the variable states\n"
+            "4. When reaching return statement/output point:\n"
+            "   a. Note the final values of return variables\n"
+            "   b. Format the output according to function specification\n"
+            "5. Verify the output matches all transformations applied"
+        ),
+        "input_cot": (
+            "1. Analyze the given output value {output} and its structure\n"
+            "2. Work backwards through the function's operations:\n"
+            "   a. Identify the last transformation applied\n"
+            "   b. Determine what input would produce this output\n"
+            "   c. Move to previous operation in reverse order\n"
+            "3. For conditional branches:\n"
+            "   a. Determine which path must have been taken\n"
+            "   b. Note the necessary conditions for this path\n"
+            "4. For loops:\n"
+            "   a. Determine how many iterations occurred\n"
+            "   b. Track how variables changed each iteration\n"
+            "5. Verify the reconstructed input:\n"
+            "   a. Forward-execute with proposed input\n"
+            "   b. Confirm it produces the given output"
         )
     },
 }

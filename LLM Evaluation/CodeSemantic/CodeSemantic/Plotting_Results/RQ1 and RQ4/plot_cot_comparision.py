@@ -71,8 +71,9 @@ def create_cot_comparison_plot(quant_mode):
         ax.bar(x[i] + width/2, cot_no_accuracies[i], width, 
               color=colors['cot_no'], edgecolor=edgecolor, hatch=hatch)
     
-    display_mode = "Quantized" if quant_mode == "quantized" else "Concrete"
+    display_mode = "Abstract" if quant_mode == "quantized" else "Concrete"
     
+    ax.set_title(f'{display_mode} value accuracy comparision (CoT vs No-CoT)', pad=20)
     ax.set_xticks(x)
     ax.set_xticklabels(models, rotation=45, ha='right')
     ax.set_ylabel('Accuracy')
@@ -87,7 +88,10 @@ def create_cot_comparison_plot(quant_mode):
         Patch(facecolor='white', edgecolor='red', hatch='///', label='Reasoning Model'),
         Patch(facecolor='white', edgecolor='black', label='Non-Reasoning Model')
     ]
-    ax.legend(handles=legend_elements, bbox_to_anchor=(1, 1), loc='upper right')
+    ax.legend(handles=legend_elements,
+            bbox_to_anchor=(1.05, 1),
+            loc='upper left',
+            borderaxespad=0.)
     
     plt.tight_layout()
     plt.savefig(f'{display_mode}_COT_comparison.png', bbox_inches='tight', dpi=300)
@@ -138,7 +142,10 @@ def create_quantization_comparison_plot():
         Patch(facecolor='white', edgecolor='red', hatch='///', label='Reasoning Model'),
         Patch(facecolor='white', edgecolor='black', label='Non-Reasoning Model')
     ]
-    ax.legend(handles=legend_elements, bbox_to_anchor=(1, 1), loc='upper right')
+    ax.legend(handles=legend_elements,
+            bbox_to_anchor=(1.05, 1),
+            loc='upper left',
+            borderaxespad=0.)
     
     plt.tight_layout()
     plt.savefig('Quantized_vs_Concrete_CoT_Yes_comparison.png', bbox_inches='tight', dpi=300)

@@ -179,10 +179,10 @@ SPLIT_SYM = "____SPLIT____"
 
 def load_my_dataset(data_id):
     if data_id == 0:
-        with open("dataset/statement_prediction_dataset.jsonl", 'r') as f:
+        with open("dataset/statement_prediction_dataset_new.jsonl", 'r') as f:
             dataset = [json.loads(line) for line in f]
     elif data_id == 1:
-        with open("dataset/statement_prediction_dataset_C.jsonl", 'r') as f:
+        with open("dataset/statement_prediction_dataset_C_new.jsonl", 'r') as f:
             dataset = [json.loads(line) for line in f]
     elif data_id == 2:
         with open("dataset/incremental_statement_prediction_python.jsonl", 'r') as f:
@@ -209,7 +209,7 @@ def load_my_dataset(data_id):
         with open("dataset/aliasing_dataset_c.jsonl", 'r') as f:
             dataset = [json.loads(line) for line in f]
     elif data_id == 10:
-        with open("dataset/statement_prediction_dataset_python_quantized.jsonl", 'r') as f:
+        with open("dataset/statement_prediction_dataset_python_quantized_new.jsonl", 'r') as f:
             dataset = [json.loads(line) for line in f]
     elif data_id == 11:
         with open("dataset/input_output_dataset_python_quantized.jsonl", 'r') as f:
@@ -250,6 +250,24 @@ def load_my_dataset(data_id):
     elif data_id == 23:
         with open("dataset/block_analysis_c_200.jsonl", 'r') as f:
             dataset = [json.loads(line) for line in f]
+    elif data_id == 24:
+        with open("dataset/first_split_1.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
+    elif data_id == 25:
+        with open("dataset/first_split_2.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
+    elif data_id == 26:
+        with open("dataset/second_split_1.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
+    elif data_id == 27:
+        with open("dataset/second_split_2.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
+    elif data_id == 28:
+        with open("dataset/boolean_prediction_dataset.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
+    elif data_id == 29:
+        with open("dataset/api_prediction_dataset.jsonl", 'r') as f:
+            dataset = [json.loads(line) for line in f]
     else:
         raise NotImplementedError
     return dataset
@@ -278,6 +296,8 @@ def model_id2name_cls(model_id: int):
         18: ("Qwen/Qwen3-8B", LocalVLLM, "openai"), 
         19: ("anthropic.claude-3-7-sonnet-20250219-v1:0", AbstLiteLLM, "bedrock" ),
         20: ("gpt-4o-mini", AbstLiteLLM, "openai"),
+        21: ("deepseek-chat", AbstLiteLLM, "openai"), 
+        22: ("deepseek-reasoner", AbstLiteLLM, "openai"),
     }
     
     if model_id not in model_map:

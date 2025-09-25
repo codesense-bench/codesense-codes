@@ -149,8 +149,8 @@ plt.ylim(0, 1.0)
 # Create custom legend
 legend_elements = [plt.Rectangle((0,0), 1, 1, color=model_colors[model], label=model) 
                    for model in pivot_df.columns]
-# plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), 
-#            loc='upper left', title="Models")
+plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), 
+           loc='upper left', title="Models")
 
 plt.grid(axis="y", linestyle="--", alpha=0.7)
 plt.tight_layout()

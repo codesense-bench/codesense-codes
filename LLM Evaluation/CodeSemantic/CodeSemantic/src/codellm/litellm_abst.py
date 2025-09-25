@@ -16,11 +16,19 @@ class AbstLiteLLM(AbstLLM):
             vertex_credentials = json.load(file)
         self.vertex_credentials_json = json.dumps(vertex_credentials)
 
+        # self.kwargs = {
+        #     "vertex_credentials": self.vertex_credentials_json,
+        #     "logprobs": False,
+        #     "drop_params": True,
+        #     "base_url": "https://api.deepseek.com"
+        # }
         self.kwargs = {
             "vertex_credentials": self.vertex_credentials_json,
             "logprobs": False,
             "drop_params": True
         }
+        
+        
 
     def _invoke_model(self, message, result_list, index, try_num=0):
         if try_num >= self.MAX_RETRIES:

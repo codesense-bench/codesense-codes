@@ -16,7 +16,9 @@ for model_id in {7..17}; do
         --prediction statement \
         --shot 0 \
         --incontext different \
-        --CoT no
+        --CoT no \\
+        --quantized_random no \
+        --API_def no
     else
       for incontext in "same" "different"; do
         for CoT in "yes" "no"; do
@@ -28,7 +30,9 @@ for model_id in {7..17}; do
             --prediction statement \
             --shot $shot \
             --incontext $incontext \
-            --CoT $CoT
+            --CoT $CoT \
+            --quantized_random no \
+            --API_def no
         done
       done
     fi

@@ -15,6 +15,7 @@ REASONING_MODELS = {
 PAID_MODELS = {
     "anthropic.claude-3-5-sonnet-20241022-v2:0",
     "gemini-1.5-flash-002",
+    "gpt-4o-mini",
 }
 
 # Load data
@@ -23,7 +24,7 @@ with open("/home/XXX/CodeSemantic/CodeSemantic/loop_Accuracy_Results/loop_python
     for line in f:
         data.append(json.loads(line))
 
-# Process data with quantization and shots
+# Process data
 loop_data = []
 for record in data:
     loop_data.append({
@@ -32,93 +33,95 @@ for record in data:
         "Settings": record["settings"],
         "Quantization": "Abstract" if record["quantization"] == "yes" else "Concrete",
         "Shot": record["shot"],
-        "IsReasoning": record["Model"] in REASONING_MODELS,
-        "IsPaid": record["Model"] in PAID_MODELS
     })
 
 df = pd.DataFrame(loop_data)
 
-# Exclude paid models from the DataFrame
-df = df[~df['Model'].isin(PAID_MODELS)]
-
-# Filter to relevant settings
-settings_to_plot = ['body', 'after']
-
-# Sort models
-def model_priority(model):
-    if model in REASONING_MODELS:
-        return (2, model)
-    elif model in PAID_MODELS:
-        return (1, model)
-    else:
-        return (0, model)
-
 # Plotting parameters
-SHOTS = [3]  # Selected shots to display
+settings_to_plot = ['body', 'after']
+SHOTS = [3]
 COLORS = {'Abstract': '#1f77b4', 'Concrete': '#ff7f0e'}
-BAR_WIDTH = 0.25
-EDGE_COLORS = {'Reasoning': 'red', 'Free': 'black'}
-HATCHES = {'Reasoning': '///', 'Free': None}
+BAR_WIDTH = 0.35  # Width for each individual bar
+GROUP_SPACING = 1  # Space between model groups
+
+# Style configurations
+MODEL_STYLES = {
+    'Reasoning': {'edgecolor': 'red', 'hatch': '///', 'linewidth': 1.5},
+    'Paid': {'edgecolor': 'green', 'hatch': '\\\\', 'linewidth': 1.5},
+    'Free': {'edgecolor': 'black', 'hatch': None, 'linewidth': 1}
+}
 
 for setting in settings_to_plot:
-    # Filter data for current setting
+    # Filter and sort data
     setting_df = df[df['Settings'] == setting]
+    models = sorted(setting_df['Model'].unique(), key=lambda x: (
+        0 if x in REASONING_MODELS else
+        -1 if x in PAID_MODELS else
+        -2, x
+    ))
     
-    # Sort models and prepare plot
-    models_sorted = sorted(setting_df['Model'].unique(), key=model_priority)
-    x = np.arange(len(models_sorted))
-    
+    # Create figure
     fig, ax = plt.subplots(figsize=(14, 7))
+    x = np.arange(len(models)) * GROUP_SPACING
     
-    # Plot bars for each shot and quantization type
-    for shot_idx, shot in enumerate(SHOTS):
-        for quant_idx, (quant_type, color) in enumerate(COLORS.items()):
-            offset = (shot_idx - 1) * BAR_WIDTH + quant_idx * BAR_WIDTH/2
-            accuracies = []
+    # Plot bars for each model
+    for model_idx, model in enumerate(models):
+        # Determine model category
+        if model in REASONING_MODELS:
+            category = 'Reasoning'
+        elif model in PAID_MODELS:
+            category = 'Paid'
+        else:
+            category = 'Free'
+        
+        style = MODEL_STYLES[category]
+        
+        # Calculate positions for both quantization types
+        offsets = [-BAR_WIDTH/2, BAR_WIDTH/2]
+        for q_idx, (q_type, color) in enumerate(COLORS.items()):
+            x_pos = x[model_idx] + offsets[q_idx]
             
-            for model in models_sorted:
-                # Get accuracy for this combination
-                acc = setting_df[(setting_df['Model'] == model) & 
-                                 (setting_df['Shot'] == shot) & 
-                                 (setting_df['Quantization'] == quant_type)]
-                accuracies.append(acc['Accuracy'].values[0] if not acc.empty else 0)
-                
-                # Apply model category styling
-                model_type = 'Reasoning' if model in REASONING_MODELS else 'Free'
-                
-                ax.bar(x[models_sorted.index(model)] + offset, 
-                       accuracies[-1], 
-                       width=BAR_WIDTH/2,
-                       color=color,
-                       edgecolor=EDGE_COLORS[model_type],
-                       hatch=HATCHES[model_type],
-                       linewidth=1)
+            acc = setting_df[
+                (setting_df['Model'] == model) &
+                (setting_df['Shot'] == SHOTS[0]) &
+                (setting_df['Quantization'] == q_type)
+            ]['Accuracy'].values
+            
+            height = acc[0] if len(acc) > 0 else 0
+            
+            ax.bar(x_pos, height, BAR_WIDTH,
+                   color=color,
+                   edgecolor=style['edgecolor'],
+                   hatch=style['hatch'],
+                   linewidth=style['linewidth'])
     
-    # Configure plot appearance
-    #ax.set_title(f'{setting.capitalize()} Setting Accuracy Comparison', pad=20, fontsize=14)
-    ax.set_xticks(x + BAR_WIDTH/2)
-    ax.set_xticklabels(models_sorted, rotation=45, ha='right')
-    ax.set_ylabel('Accuracy')
+    # Configure axes
+    ax.set_xticks(x)
+    ax.set_xticklabels(models, rotation=45, ha='right', fontsize=10)
+    ax.set_xlim(-0.5 * GROUP_SPACING, (len(models)-0.5) * GROUP_SPACING)
+    ax.set_ylabel('Accuracy', fontsize=12)
     ax.set_ylim(0, 1.1)
-    ax.grid(axis='y', linestyle='--', alpha=0.3)
+    ax.yaxis.grid(True, linestyle='--', alpha=0.3)
     
-    # Create combined legend
-    combined_legend = [
+    # Create legends
+    quant_legend = [
         Patch(facecolor=COLORS['Abstract'], label='Abstract Prediction'),
         Patch(facecolor=COLORS['Concrete'], label='Concrete Prediction')
     ]
     
-    # Model legends
     model_legend = [
-        Patch(facecolor='white', edgecolor=EDGE_COLORS['Reasoning'], 
-              hatch=HATCHES['Reasoning'], label='Reasoning Models'),
-        Patch(facecolor='white', edgecolor=EDGE_COLORS['Free'], 
-              label='Free Models')
+        Patch(facecolor='white', **MODEL_STYLES['Reasoning'], label='Reasoning Models'),
+        Patch(facecolor='white', **MODEL_STYLES['Paid'], label='Paid Models'),
+        Patch(facecolor='white', **MODEL_STYLES['Free'], label='Free Models')
     ]
     
-    # Add combined legends to plot inside the figure area
-    ax.legend(handles=combined_legend + model_legend, loc='upper right', fontsize=10, bbox_to_anchor=(1, 1))
+    ax.legend(handles=quant_legend + model_legend,
+              loc='upper right',
+              bbox_to_anchor=(1, 1),
+              fontsize=10,
+              ncol=2)
     
+    # Final adjustments
     plt.tight_layout()
-    plt.savefig(f'{setting}_quant_shot_comparision.png', dpi=300, bbox_inches='tight')
+    plt.savefig(f'{setting}_comparison.png', dpi=300, bbox_inches='tight')
     plt.show()

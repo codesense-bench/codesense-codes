@@ -20,6 +20,7 @@ model_results = defaultdict(lambda: {
 PAID_MODELS = {
     "anthropic.claude-3-5-sonnet-20241022-v2:0",
     "gemini-1.5-flash-002",
+    "gpt-4o-mini",
 }
 
 # Populate results
@@ -54,8 +55,10 @@ def create_plot(quant_mode, title_suffix, models_to_plot):
     
     if quant_mode == "non_quantized":
         quant_mode = "concrete"
+    else:
+        quant_mode = "abstract"
 
-    #ax.set_title(f'{quant_mode.capitalize()} Statement Prediction Accuracy', pad=20)
+    ax.set_title(f'{quant_mode.capitalize()} Statement Prediction Accuracy', pad=20)
     ax.set_xticks(np.arange(len(models_to_plot)) + 0.3)
     ax.set_xticklabels(models_to_plot, rotation=45, ha='right')
     ax.set_ylabel('Accuracy')

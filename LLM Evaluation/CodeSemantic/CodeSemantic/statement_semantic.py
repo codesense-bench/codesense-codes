@@ -27,12 +27,12 @@ def evaluate_statement_based(res, args, model_name):
     type_total = defaultdict(int)
     language = None
 
-    dir_path = f"Detailed_Results/Prediction_{args.prediction}_{args.language}/Model_{model_name}/Shot_{args.shot}/"
+    dir_path = f"Detailed_Results_ICLR/Prediction_{args.prediction}_{args.language}/Model_{model_name}/Shot_{args.shot}/"
 
     os.makedirs(dir_path, exist_ok=True)
 
     #We have selected pt_id 1 from our prompt validation
-    file_path = f"{dir_path}Prompt_{args.pt_id}_CoT_{args.CoT}_incontext_{args.incontext}_quantization_{args.quantized_prediction}.jsonl"
+    file_path = f"{dir_path}Prompt_{args.pt_id}_CoT_{args.CoT}_incontext_{args.incontext}_quantization_{args.quantized_prediction}_baseline_{args.quantized_random}_def_{args.API_def}.jsonl"
 
     for d in res:
         try:
@@ -552,6 +552,9 @@ def parse_arguments():
     parser.add_argument('--CoT', type= str, default='no',choices=['yes','no'], required= True, 
                        help='Incontext with or without CoT')
     parser.add_argument('--quantized_prediction', type = str, default = 'no', choices=['yes','no'], required = True)
+    parser.add_argument('--quantized_random', type = str, default = 'no', choices=['yes','no'], required = True)
+    parser.add_argument('--API_def', type = str, default = 'no', choices=['yes','no', 'code'], required = True)
+    
     
     return parser.parse_args()
 
@@ -581,7 +584,7 @@ def main():
         overall_accuracy, type_accuracy, type_total, language = evaluate_statement_based(res, args, model.model_name)
         print(overall_accuracy)
     
-        dir_path = f"{args.prediction}_Accuracy_Results/"
+        dir_path = f"{args.prediction}_Accuracy_Results_ICLR/"
 
 
         os.makedirs(dir_path, exist_ok=True)
@@ -596,11 +599,18 @@ def main():
             "CoT": args.CoT,
             "shot": args.shot,
             "quantization": args.quantized_prediction,
+            "random_baseline": args.quantized_random,
+            "API definition": args.API_def,
             "accuracy": overall_accuracy,
             "type_accuracy": type_accuracy,
         }
-        with open(f"{dir_path}{args.prediction}_{args.language}_results.jsonl", "a") as f:
-            f.write(json.dumps(data_entry) + "\n")
+        if args.quantized_prediction == "yes":
+            with open(f"{dir_path}{args.prediction}_{args.language}_quantization_{args.quantized_prediction}.jsonl", "a") as f:
+                f.write(json.dumps(data_entry) + "\n")
+            
+        else:
+            with open(f"{dir_path}{args.prediction}_{args.language}_paid_models.jsonl", "a") as f:
+                f.write(json.dumps(data_entry) + "\n")
 
             
         # save_results_to_json(
@@ -655,7 +665,7 @@ def main():
             "settings": args.settings,
         }
 
-        with open(f"{dir_path}{args.prediction}_{args.language}_results.jsonl", "a") as f:
+        with open(f"{dir_path}{args.data_id}_{args.prediction}_{args.language}_results.jsonl", "a") as f:
             f.write(json.dumps(data_entry) + "\n")
         
         #print(overall_accuracy)
